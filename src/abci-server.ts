@@ -1,13 +1,12 @@
 import djson = require('deterministic-json')
 import vstruct = require('varstruct')
-
-let createServer = require('abci')
+import { createServer } from 'abci'
 
 export interface ABCIServer {
   listen(port)
 }
 
-export default function createABCIServer(stateMachine, initialState): any {
+export default function createABCIServer(stateMachine, initialState) {
   let height = 0
   let abciServer = createServer({
     info(request) {
@@ -40,7 +39,7 @@ export default function createABCIServer(stateMachine, initialState): any {
       }
     },
     beginBlock(request) {
-      let time = request.header.time.seconds.toNumber()
+      let time = request.header.time.seconds
 
       stateMachine.transition({ type: 'begin-block', data: { time } })
       return {}
@@ -78,7 +77,7 @@ export default function createABCIServer(stateMachine, initialState): any {
       let path = request.path
 
       let queryResponse: object = stateMachine.query(path)
-      let value = Buffer.from(djson.stringify(queryResponse)).toString('base64')
+      let value = Buffer.from(djson.stringify(queryResponse))
 
       return {
         value,

@@ -4,14 +4,15 @@
   "description": "smooth, easy blockchain apps. powered by tendermint consensus.",
   "main": "dist/index.js",
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "install": "tsc --build tsconfig.json"
   },
   "keywords": [],
   "author": "Judd Keppel <kepzorz@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "@types/node": "^10.5.2",
-    "abci": "^4.0.2",
+    "abci": "github:yaram/js-abci#5d8d4d85d2c52ebd1073b0393cd8ee823f5202a7",
     "deterministic-json": "^1.0.5",
     "fs-extra": "^7.0.0",
     "get-port": "^4.0.0",
@@ -19,7 +20,7 @@
     "lotion-connect": "^0.1.5",
     "lotion-state-machine": "0.0.5",
     "peer-channel": "^0.1.1",
-    "tendermint-node": "^3.4.0"
+    "tendermint-node": "github:yaram/tendermint-node#bbf124998bc05b566ba88935a5f1cc4c3228a173"
   },
   "devDependencies": {
     "ava": "^0.25.0"
